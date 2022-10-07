@@ -1,0 +1,28 @@
+{
+  "name": "wetube-2022",
+  "version": "1.0.0",
+  "description": "The best way to watch videos.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LifeFi/wetube-2022.git"
+  },
+  "scripts": {
+    "dev": "nodemon --exec babel-node src/server.js"
+  },
+  "author": "TOP1",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LifeFi/wetube-2022/issues"
+  },
+  "homepage": "https://github.com/LifeFi/wetube-2022#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.19.3",
+    "@babel/node": "^7.19.1",
+    "@babel/preset-env": "^7.19.3",
+    "nodemon": "^2.0.20"
+  }
+}
