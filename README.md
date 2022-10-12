@@ -5,12 +5,12 @@
 /login
 /search
 
+/users/:id -> See User
+/users/logout
 /users/edit
 /users/delete
 
-/videos/:id -> see
+/videos/:id -> See video
 /videos/:id/edit
+/videos/:id/delete
 /videos/upload
-/videos/delete
-/videos/comment
-/Rvideos/comment/delete
