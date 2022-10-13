@@ -17,7 +17,8 @@
   "homepage": "https://github.com/LifeFi/wetube-2022#readme",
   "dependencies": {
     "express": "^4.18.1",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0", // 미들웨어, logger로 사용
+    "pug": "^3.0.2" // 템플릿 렌더러
   },
   "devDependencies": {
     "@babel/core": "^7.19.3",

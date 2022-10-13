@@ -7,8 +7,10 @@ import userRouter from "./routers/userRouter";
 const PORT = 4000;
 const app = express();
 const logger = morgan("dev");
-app.use(logger);
 
+app.set("view engine", "pug");
+app.set("views", process.cwd() + "/src/views");
+app.use(logger);
 app.use("/", globalRouter);
 app.use("/videos", videoRouter);
 app.use("/users", userRouter);
@@ -16,6 +18,8 @@ app.use("/users", userRouter);
 // ▼▼▼▼▼▼▼▼▼▼▼ 이 사이에 코드 작성
 
 // ▲▲▲▲▲▲▲▲▲▲▲ 이 사이에 코드 작성
-const handleListening = () => console.log(`server listening on port ${PORT}`);
+
+const handleListening = () =>
+  console.log(`server listening on localhost:${PORT}`);
 
 app.listen(PORT, handleListening);
