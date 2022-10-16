@@ -7,7 +7,7 @@
     "url": "git+https://github.com/LifeFi/wetube-2022.git"
   },
   "scripts": {
-    "dev": "nodemon --exec babel-node src/server.js"
+    "dev": "nodemon --exec babel-node src/init.js"
   },
   "author": "TOP1",
   "license": "MIT",
@@ -17,8 +17,9 @@
   "homepage": "https://github.com/LifeFi/wetube-2022#readme",
   "dependencies": {
     "express": "^4.18.1",
-    "morgan": "^1.10.0", // 미들웨어, logger로 사용
-    "pug": "^3.0.2" // 템플릿 렌더러
+    "mongoose": "^6.6.5",
+    "morgan": "^1.10.0",
+    "pug": "^3.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.19.3",
