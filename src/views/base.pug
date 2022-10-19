@@ -2,22 +2,16 @@ doctype html
 html(lang="ko")
     head
         title #{pageTitle} | Wetube            
-        link(rel="stylesheet" href="https://unpkg.com/mvp.css@1.12/mvp.css")
-
+        //- link(rel="stylesheet" href="https://unpkg.com/mvp.css@1.12/mvp.css")
+        link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css")
+        link(rel="stylesheet" href="/static/css/styles.css")
     body
-        header
-            h1=pageTitle 
-        nav
-            ul 
-                li 
-                    a(href="/videos/upload") Upload video
-                li 
-                    a(href="/") Home
-                li 
-                    a(href="/search") Search
+        include partials/header
         main
             block content        
-    include partials/footer
+        include partials/footer
+    //- ▼ 프론트에서 사용하는 JS
+    script(src="/static/js/main.js")
 
 
 
