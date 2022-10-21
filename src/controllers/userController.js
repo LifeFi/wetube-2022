@@ -141,6 +141,8 @@ export const finishGithubLogin = async (req, res) => {
 };
 
 export const getEdit = (req, res) => {
+  console.log(res.locals.loggedInUser.avatarUrl);
+
   return res.render("edit-profile", { pageTitle: "Edit Profile" });
 };
 
@@ -180,12 +182,18 @@ export const postEdit = async (req, res) => {
 export const remove = (req, res) => res.send("Remove User");
 
 export const logout = (req, res) => {
-  req.session.destroy();
+  // flash 사용하기 위해서는, session이 존재해야 함.
+  // req.session.destroy();
+  req.session.user = null;
+  res.locals.loggedInUser = req.session.user;
+  req.session.loggedIn = false;
+  req.flash("info", "Bye Bye");
   return res.redirect("/");
 };
 
 export const getChangePassword = (req, res) => {
   if (req.session.user.socialOnly === true) {
+    req.flash("error", "Can't change password.");
     return res.redirect("/");
   }
   return res.render("users/change-password", { pageTitle: "Change Password" });
@@ -214,12 +222,13 @@ export const postChangePassword = async (req, res) => {
   user.password = newPassword;
   await user.save();
   req.session.user.password = user.password;
+  req.flash("info", "Password Updated");
   return res.redirect("/users/logout");
 };
 
 export const see = async (req, res) => {
   const { id } = req.params;
-
+  console.log(id);
   const user = await User.findById(id).populate({
     path: "videos",
     populate: {
@@ -227,7 +236,7 @@ export const see = async (req, res) => {
       model: "User",
     },
   });
-
+  console.dir(user);
   if (!user) {
     return res.status(404).render("404", { pageTitle: "User not found" });
   }

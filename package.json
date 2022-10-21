@@ -7,8 +7,12 @@
     "url": "git+https://github.com/LifeFi/wetube-2022.git"
   },
   "scripts": {
-    "dev:server": "nodemon --config nodemon.json",
-    "dev:assets": "webpack --config webpack.config.js"
+    "start": "node build/init.js",
+    "build": "npm run build:server && npm run build:assets",
+    "build:server": "babel src -d build",
+    "build:assets": "webpack --mode=production",
+    "dev:server": "nodemon",
+    "dev:assets": "webpack --mode=development -w"
   },
   "author": "TOP1",
   "license": "MIT",
@@ -17,19 +21,24 @@
   },
   "homepage": "https://github.com/LifeFi/wetube-2022#readme",
   "dependencies": {
+    "@ffmpeg/core": "^0.11.0",
+    "@ffmpeg/ffmpeg": "^0.11.5",
     "bcrypt": "^5.1.0",
     "connect-mongo": "^4.6.0",
     "cross-fetch": "^3.1.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.1",
+    "express-flash": "^0.0.2",
     "express-session": "^1.17.3",
     "mongoose": "^6.6.5",
     "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
-    "pug": "^3.0.2"
+    "pug": "^3.0.2",
+    "regenerator-runtime": "^0.13.10"
   },
   "devDependencies": {
-    "@babel/core": "^7.19.3",
+    "@babel/cli": "^7.19.3",
+    "@babel/core": "^7.19.6",
     "@babel/node": "^7.19.1",
     "@babel/preset-env": "^7.19.3",
     "babel-loader": "^8.2.5",

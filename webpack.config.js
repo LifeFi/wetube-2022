@@ -2,17 +2,22 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require("path");
 
+const BASE_JS = "./src/client/js/";
+
 module.exports = {
-  entry: "./src/client/js/main.js",
+  entry: {
+    main: BASE_JS + "main.js",
+    videoPlayer: BASE_JS + "videoPlayer.js",
+    recorder: BASE_JS + "recorder.js",
+    commentSection: BASE_JS + "commentSection.js",
+  },
   plugins: [
     new MiniCssExtractPlugin({
       filename: "css/styles.css",
     }),
   ],
-  mode: "development",
-  watch: true /* 소스가 바뀔떄마다 webpack을 자동으로 실행시킴 */,
   output: {
-    filename: "js/main.js",
+    filename: "js/[name].js",
     path: path.resolve(__dirname, "assets"),
     clean: true /* webpack 재실행 전에 폴더/파일 삭제*/,
   },
