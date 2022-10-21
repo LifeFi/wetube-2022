@@ -11,6 +11,7 @@ import { protectorMiddleware, videoUpload } from "../middlewares";
 
 const videoRouter = express.Router();
 
+//추가
 //mongodb id 규칙
 // https://mongodb.github.io/node-mongodb-native/api-bson-generated/objectid.html
 // 숫자 : \d+
