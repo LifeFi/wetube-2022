@@ -85,7 +85,7 @@ export const postUpload = async (req, res) => {
 
   const { video, thumb } = req.files;
   const { title, description, hashtags } = req.body;
-  const isHeroku = process.env.NODE_ENV == "production";
+  const isHeroku = process.env.NODE_ENV === "production";
 
   try {
     const newVideo = await Video.create({
@@ -96,7 +96,7 @@ export const postUpload = async (req, res) => {
         : Video.changePathFomula(video[0].path),
       thumbUrl: isHeroku
         ? Video.changePathFomula(thumb[0].location)
-        : Video.changePathFomula(video[0].path),
+        : Video.changePathFomula(thumb[0].path),
       owner: _id,
       hashtags: Video.formatHashtags(hashtags),
     });
