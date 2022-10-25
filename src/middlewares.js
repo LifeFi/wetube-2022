@@ -4,8 +4,10 @@ import aws from "aws-sdk";
 
 const s3 = new aws.S3({
   region: "ap-southeast-1",
-  accessKeyId: process.env.AWS_ID,
-  secretAccessKey: process.env.AWS_SECRET,
+  credentials: {
+    accessKeyId: process.env.AWS_ID,
+    secretAccessKey: process.env.AWS_SECRET,
+  },
 });
 
 const isHeroku = process.env.NODE_ENV === "production";
@@ -59,5 +61,5 @@ export const avatarUpload = multer({
 export const videoUpload = multer({
   dest: "uploads/videos/",
   limits: { fileSize: 10000000 },
-  storage: isHeroku ? s3VideoUploader : undefined,
+  storage: isHeroku ? s3VideoUploader : s3VideoUploader,
 });
