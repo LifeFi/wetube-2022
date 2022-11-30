@@ -3,11 +3,13 @@
   .video-mixin__thumb {
     height: 140px;
     border-radius: 7px;
-    width: 100%;
+    // width: 100%;
     background-color: ivory;
     background-size: cover;
     background-position: center;
+    align-items: center;
   }
+
   .video-mixin__data {
     padding: 0px 15px;
     .video-mixin__title {

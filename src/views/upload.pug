@@ -8,9 +8,9 @@ block content
         if errorMessage 
             span=errorMessage
         form(method="POST", enctype="multipart/form-data")
-            lanel(for="video") Video File
+            label(for="video") Video File
             input(type="file", accept="video/*", required, id="video", name="video")
-            lanel(for="thumb") Thumbnail File
+            label(for="thumb") Thumbnail File
             input(type="file", accept="image/*", required, id="thumb", name="thumb")
             input(name="title", placeholder="Title", required, type="text", maxLength="80")
             input(name="description", placeholder="Description", required, type="text", minLength="20")

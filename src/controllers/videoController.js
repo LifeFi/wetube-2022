@@ -143,6 +143,7 @@ export const createComment = async (req, res) => {
   if (!video) {
     return res.sendStatus(404);
   }
+  const commentUser = await User.findById(user._id);
   const comment = await Comment.create({
     text,
     owner: user._id,
@@ -150,5 +151,35 @@ export const createComment = async (req, res) => {
   });
   video.comments.push(comment._id);
   video.save();
+  commentUser.comments.push(comment._id);
+  commentUser.save();
   return res.status(201).json({ newCommentId: comment._id });
+};
+
+export const deleteComment = async (req, res) => {
+  const {
+    params: { id },
+    body: { videoId },
+    session: { user },
+  } = req;
+
+  const comment = await Comment.findById(id);
+  if (!comment) {
+    return res.status(404).render("404", { pagetitle: "Comment not found." });
+  }
+  if (String(comment.owner) !== String(user._id)) {
+    return res.status(403);
+  }
+
+  const video = await Video.findById(videoId);
+  const commentUser = await User.findById(user._id);
+
+  video.comments.splice(video.comments.indexOf(id), 1);
+  commentUser.comments.splice(commentUser.comments.indexOf(id), 1);
+
+  await video.save();
+  await commentUser.save();
+  await Comment.findByIdAndDelete(id);
+
+  return res.sendStatus(201);
 };
